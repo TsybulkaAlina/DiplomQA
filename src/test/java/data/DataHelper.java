@@ -65,7 +65,7 @@ public class DataHelper {
     }
 
 
-    // заполнение поля месяц невалидными данными
+    // Заполнение поля месяц невалидными данными
     public static CardInfo getMonth13() {
         return new CardInfo(getApprovedCardNumber(),"13", getValidYear(), getValidHolder(), getValidCodcvccvv());
     }
@@ -128,7 +128,7 @@ public class DataHelper {
         return new CardInfo(getApprovedCardNumber(),getValidMonth(),getValidYear(),"", getValidCodcvccvv());
     }
 
-    // заполнение CVC/CVV не валидными символами
+    // Заполнение поля "CVC/CVV" невалидными данными
     public static CardInfo getCVCCVVSymbol() {
         return new CardInfo(getApprovedCardNumber(),getValidMonth(),getValidYear(),getValidHolder(),"12%");
     }
@@ -147,7 +147,8 @@ public class DataHelper {
     public static CardInfo getCVCCVV000() {
         return new CardInfo(getApprovedCardNumber(),getValidMonth(),getValidYear(),getValidHolder(),"000");
     }
-    // данные карты
+
+    // Данные карты
     @Value
     public static class CardInfo {
         String cardnumber;

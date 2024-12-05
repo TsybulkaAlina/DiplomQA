@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selectors.byCssSelector;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
-public class PaymentsPage {
+public class Paymentpage {
 
     private SelenideElement cardnumber = $("[placeholder='0000 0000 0000 0000']");//$(byText("Номер карты")).parent().$(".input__control");
     private SelenideElement month = $(byText("Месяц")).parent().$(".input__control");
@@ -29,7 +29,7 @@ public class PaymentsPage {
     private SelenideElement ownerError = $(byText("Владелец")).parent().$(".input__sub");
     private SelenideElement cvcError = $(byText("CVC/CVV")).parent().$(".input__sub");
 
-    // Заполнение полей формы
+    //заполнение формы
     public void fillingOutTheForm(DataHelper.CardInfo cardInfo) {
         cardnumber.setValue(cardInfo.getCardnumber());
         month.setValue(cardInfo.getMonth());
@@ -38,8 +38,9 @@ public class PaymentsPage {
         cvccvv.setValue(cardInfo.getCodcvccvv());
         continuebutton.click();
     }
-    // Если форма пустая
-    public void emptyForm() {
+
+    // не заполненная форма
+    public void emptyform() {
         continuebutton.click();
         cardNumberError.shouldBe(visible);
         monthError.shouldBe(visible);
@@ -47,32 +48,41 @@ public class PaymentsPage {
         ownerError.shouldBe(visible);
         cvcError.shouldBe(visible);
     }
-    // Если оплата прошла успешно или отклонена
-    public void paymentSuccessful() {
-        $(".notification_status_ok").shouldBe(Condition.visible, Duration.ofSeconds(25));
+
+    // успешная оплата
+    public void paymentSuccessfull() {
+        $(".notification_status_ok").shouldBe(Condition.visible, Duration.ofSeconds(30));
     }
+
     public void declinedPayment() {
         $(byCssSelector("div.notification.notification_status_error.notification_has-closer.notification_stick-to_right.notification_theme_alfa-on-white")).shouldBe(Condition.visible, Duration.ofSeconds(20));
     }
-    public void monthNotValid() {
-        monthError.shouldBe(visible);
-    }
-    public void yearNotValid() {
-        yearError.shouldBe(visible);
-    }
-    public void ownerNotValid() {
-        ownerError.shouldBe(visible);
-    }
-    public void cvcNotValid() {
-        cvcError.shouldBe(visible);
-    }
+
     public void invalidCardFormat() {
         formatCardError.shouldBe(visible);
     }
+
     public void invalidCardExpirationDate() {
         expiredCardError.shouldBe(visible);
     }
-    public void termСardExpired() {
+
+    public void theСardExpired() {
         termCardError.shouldBe(visible);
+    }
+
+    public void monthNotValid() {
+        monthError.shouldBe(visible);
+    }
+
+    public void yearNotValid() {
+        yearError.shouldBe(visible);
+    }
+
+    public void ownerNotValid() {
+        ownerError.shouldBe(visible);
+    }
+
+    public void cvcNotValid() {
+        cvcError.shouldBe(visible);
     }
 }
