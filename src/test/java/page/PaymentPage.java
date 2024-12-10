@@ -2,7 +2,7 @@ package page;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import data.DataHelper;
+import data.CardDataHelper;
 
 import java.time.Duration;
 
@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selectors.byCssSelector;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
-public class Paymentpage {
+public class PaymentPage {
 
     private SelenideElement cardnumber = $("[placeholder='0000 0000 0000 0000']");//$(byText("Номер карты")).parent().$(".input__control");
     private SelenideElement month = $(byText("Месяц")).parent().$(".input__control");
@@ -30,7 +30,7 @@ public class Paymentpage {
     private SelenideElement cvcError = $(byText("CVC/CVV")).parent().$(".input__sub");
 
     //заполнение формы
-    public void fillingOutTheForm(DataHelper.CardInfo cardInfo) {
+    public void fillingOutTheForm(CardDataHelper.CardInfo cardInfo) {
         cardnumber.setValue(cardInfo.getCardnumber());
         month.setValue(cardInfo.getMonth());
         year.setValue(cardInfo.getYear());
@@ -40,7 +40,7 @@ public class Paymentpage {
     }
 
     // не заполненная форма
-    public void emptyform() {
+    public void emptyForm() {
         continuebutton.click();
         cardNumberError.shouldBe(visible);
         monthError.shouldBe(visible);

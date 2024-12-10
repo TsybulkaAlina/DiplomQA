@@ -9,11 +9,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class SQLHelper {
+public class DatabaseHelper {
     private static final QueryRunner runner = new QueryRunner();
 
 
-    private SQLHelper() {
+    private DatabaseHelper() {
     }
 
     private static Connection getConn() throws SQLException {
@@ -22,7 +22,7 @@ public class SQLHelper {
 
     @SneakyThrows
     public static void deleteTable() {
-        val deletePaymentEntity = "DELETE FROM payment_entity ";
+        val deletePaymentEntity = "DELETE FROM payment_entity;";
         val runner = new QueryRunner();
         try (val conn = getConn()) {
             runner.update(conn, deletePaymentEntity);
@@ -33,7 +33,7 @@ public class SQLHelper {
 
     @SneakyThrows
     public static String getPaymentStatus() {
-        String statusSQL = "SELECT status FROM payment_entity";
+        String statusSQL = "SELECT status FROM payment_entity;";
         return getStatus(statusSQL);
     }
 
